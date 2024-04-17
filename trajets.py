@@ -89,4 +89,12 @@ class TrajetsTGVmax:
         for trajet in self.liste_trajets:
             if trajet.time_depart.strftime("%d-%m-%Y") == selected_date.strftime("%d-%m-%Y"):
                 selected_trajets.append(trajet)
+        return TrajetsTGVmax(selected_trajets)  
+
+    def select_from_hour(self,hour_str,format="%H"):
+        selected_hour = datetime.datetime.strptime(hour_str,format)
+        selected_trajets = []
+        for trajet in self.liste_trajets:
+            if trajet.time_depart.hour >= selected_hour.hour:
+                selected_trajets.append(trajet)
         return TrajetsTGVmax(selected_trajets)
