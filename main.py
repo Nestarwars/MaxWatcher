@@ -7,13 +7,19 @@ parser.add_argument('--orig',  dest='origin'     , type=str, default='LYON (intr
 parser.add_argument('--dest',  dest='destination', type=str, default='PARIS (intramuros)')
 parser.add_argument('--date',  dest='date'       , type=str, default='')
 parser.add_argument('--fhour', dest='fhour'      , type=str, default='')
+parser.add_argument('--search',dest='search'     , type=str, default='')
 
 if __name__ == '__main__':
     args = parser.parse_args()
     stations = Stations()
     stations.get_stations()
     output = TrajetsTGVmax()
-    
+
+    if args.search :
+        print(stations.search(args.search))
+        
+        exit()
+        
     if args.origin in stations_groups :
         origins = stations_groups[args.origin]
     else : 
