@@ -2,4 +2,9 @@
 
 MaxWatcher is a tool to find MaxJeune available trips, without going through the pain of SNCFConnect.
 
-It's a work in progress, only working for Paris (and Massy-TGV, Marne La Vallée-TGV) and Lyon (all stations).
+# Using Max Watcher
+
+Just execute main.py with these arguments :
+- `--orig` : sets the departure station
+- `--dest` : sets the destination station
+- `--date` : sets the date, format : 'DD-MM-YYYY'
