@@ -14,7 +14,21 @@ if __name__ == '__main__':
     stations = Stations()
     stations.get_stations()
     output = TrajetsTGVmax()
+
+    if args.search :
+        print(stations.search(args.search))
+        
+        exit()
+        
+    if args.origin in stations_groups :
+        origins = stations_groups[args.origin]
+    else : 
+        origins = [args.origin]
     
+    if args.destination in stations_groups :
+        destinations = stations_groups[args.destination]
+    else : 
+        destinations = [args.destination]
 
     if args.destination or args.origin or args.date: 
         if args.origin in stations_groups :
