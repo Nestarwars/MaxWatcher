@@ -58,11 +58,11 @@ class TrajetsTGVmax:
         self.liste_trajets = liste_trajets
 
     def __repr__(self):
-        r =  'DATE       | DEPART     | ARRIVEE    | GARE DEPART                    | GARE ARRIVEE     \n'
-        r += '-----------------------------------------------------------------------------------------\n'
+        r =  'DATE       | DEPART     | ARRIVEE    | GARE DEPART                    | GARE ARRIVEE                     \n'
+        r += '---------------------------------------------------------------------------------------------------------\n'
         for trajet in self.liste_trajets :
             r += str(trajet) + '\n'
-        r += '-----------------------------------------------------------------------------------------\n'
+        r += '---------------------------------------------------------------------------------------------------------\n'
         r += ' TOTAL TRAJETS DISPO MAXJEUNE : '+str(len(self.liste_trajets))
         return r
     
