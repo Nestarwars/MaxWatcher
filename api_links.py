@@ -68,6 +68,19 @@ class Stations:
     def search(self, request):
         matching = [station for station in self.list if request in station]
         return Stations(matching)
+    
+class StationsGraph:
+    def __init__(self):
+        pass
+
+    def add_station(self, station:str, destinations:dict):
+        pass
+    
+    def find_paths(self, orig, dest):
+        pass
+
+    def quickest_path(self, orig, dest):
+        pass
 
 if __name__ == "__main__":
     S = Stations()
