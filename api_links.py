@@ -22,6 +22,8 @@ api_prefix = "https://ressources.data.sncf.com/api/explore/v2.1/catalog/datasets
 
 stations_link = "https://ressources.data.sncf.com/api/explore/v2.1/catalog/datasets/tgvmax/records?select=origine&group_by=origine&limit=-1"
 
+global_link =  "https://ressources.data.sncf.com/api/explore/v2.1/catalog/datasets/tgvmax/records?limit=-1"
+
 def api_format(name):
     api_name = "%3A%22" + name.replace(" ","%20") + "%22"
     return api_name
@@ -71,7 +73,8 @@ class Stations:
     
 class StationsGraph:
     def __init__(self):
-        pass
+        self.graph = {}
+
 
     def add_station(self, station:str, destinations:dict):
         pass

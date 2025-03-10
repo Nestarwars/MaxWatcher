@@ -46,13 +46,17 @@ class TrajetsTGVmax:
             response = requests.get(link).json()
             nbr_results = response['total_count']
             offset = 0
-            while response['results'] != [] and limit_results > 0:
-                for line in response['results']:
-                    trajet = Trajet(line)
-                    liste_trajets.append(trajet)
-                offset += 100
-                limit_results -= 100
-                response = requests.get(link+'&offset='+str(offset)).json()
+            while limit_results > 0:
+                try:
+                    for line in response['results']:
+                        trajet = Trajet(line)
+                        liste_trajets.append(trajet)
+                    offset += 100
+                    limit_results -= 100
+                    response = requests.get(link+'&offset='+str(offset)).json()
+
+                except KeyError :
+                    break
             
             # result = requests.get(link).json()['results']
             # for line in result :
@@ -117,9 +121,24 @@ if __name__ == '__main__' :
     from api_links import *
     trajets_test = TrajetsTGVmax()
 
-    trajets_test.get([api_prefix],limit_results=300)
+    trajets_test.get([api_prefix],limit_results=1000)
 
     print(trajets_test)
+
+    graph = {}
+
+    for trajet in trajets_test.liste_trajets :
+        if not trajet.depart == trajet.arrivee :
+            if trajet.depart not in graph.keys() :
+                graph[trajet.depart]={trajet.arrivee : trajet.duration()}
+            else : 
+                if trajet.arrivee not in graph[trajet.depart] :
+                    graph[trajet.depart][trajet.arrivee] = trajet.duration()
+
+    for key in sorted(graph.keys()):
+        print('- '+key+' ------------------')
+        for dest in graph[key]:
+            print("   "+dest+"  "+str(graph[key][dest]))         
 
     trajetA = trajets_test.liste_trajets[0]
 
